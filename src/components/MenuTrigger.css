@@ -1,0 +1,38 @@
+.menu_trigger{
+    position: fixed;
+    top: 5%;
+    left: 2%;
+    display: none;
+    
+}
+
+.menu_trigger button{
+    border: none; /* Sem borda */
+    background-color: #cfd7e6;
+    width: 30px;
+    height: 30px;
+    text-align: center; /* Alinhamento do texto */
+    text-decoration: none; /* Sem decoração de texto */
+    display: inline-block; /* Display em linha */
+    font-size: .5rem; /* Tamanho da fonte */
+
+    opacity: .9;
+    cursor: pointer; /* Cursor */
+    border-radius: 50%; /* Raio da borda */
+    transition-duration: 0.4s; /* Duração da transição */
+
+} 
+
+.menu_trigger button:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19); /* Valores da sombra */
+} 
+
+.menu_trigger button svg{
+    height: 1rem;
+    width: 1rem;
+    
+    align-items: center;
+}
+
+
+

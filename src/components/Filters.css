@@ -1,0 +1,15 @@
+.filters{
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #dee2e6;
+}
+
+.filters label{
+    margin: 5px 0;
+}
+
+.item-filter{
+    display: flex;
+    flex-direction: column;
+}

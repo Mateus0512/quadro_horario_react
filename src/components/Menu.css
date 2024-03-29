@@ -1,0 +1,102 @@
+
+
+@media (max-width:576px){
+    .menu_trigger{
+        display: block;
+        z-index: 10;
+    }
+    
+
+    .menu_mobile{
+        display: block;
+    }
+
+    .hide{
+        display: none;
+    }
+
+    .pdf-data{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        height: 25%;
+        border: none;
+    
+    }
+    .pdf-data button{
+        width: 40%;
+    
+    }
+
+    .menu{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 300px;
+        background-color: #dee2e6;
+        z-index: 10;
+    }
+    
+    .menu .button-fechar{
+        position: absolute;
+        right: 2%;
+        top: 0;
+        background-color: transparent;
+        color: black;
+        border: none;
+        cursor: pointer;
+    }
+
+
+    
+}
+
+@media(min-width:577px){
+
+    .menu{
+        position: initial;
+        width: 100%;
+    }
+
+    .menu .button-fechar{
+        display: none;
+    }
+
+    .pdf-data{
+        background-color: #dee2e6;
+        border: #CCC 1px solid;
+    
+    }
+    
+    .pdf-data button{
+        margin-left: 10px;
+        
+    }
+
+    
+}
+
+@media(orientation: landscape){
+
+
+    .menu{
+        position: initial;
+        width: 100%;
+    }
+
+    .menu .button-fechar{
+        display: none;
+    }
+
+    .pdf-data{
+        background-color: #dee2e6;
+        border: #CCC 1px solid;
+    
+    }
+    
+    .pdf-data button{
+        margin-left: 10px;
+        
+    }
+}

@@ -1,0 +1,72 @@
+.tables{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0,0,0,.05);
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+}
+.table tbody + tbody {
+    border-top: 2px solid #dee2e6;
+}
+.table .table {
+    background-color: #fff;
+}
+
+.thead-dark {
+    color: #fff;
+    background-color: #212529; 
+    position: sticky;
+    top: 0;
+}
+
+#quadro_horario{
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 575.98px) {
+    .table-responsive-sm {
+        display: block;
+        width: 100%;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+    .table-responsive-sm > .table {
+        margin-bottom: 0;
+    }
+}
+
+@media print{
+    .table {
+        width: 1200px;
+    }
+}
+    
+

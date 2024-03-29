@@ -1,0 +1,11 @@
+.reset{
+    width: 100%;
+    padding: 1rem;
+    margin: 5px 0;
+    background-color: #dee2e6;
+}
+
+.reset a{
+    border-bottom: 1px solid #000;
+    cursor: pointer;
+}
