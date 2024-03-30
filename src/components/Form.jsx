@@ -89,6 +89,12 @@ export function Form({setTableData,setListaPostos,setListaTabelas,setInformacoes
 
             for(let trecho=0;trecho<programacao.quadro.tabelas[tabela].trechos.length;trecho++){
 
+                let voltaLanche = '';
+
+                (trecho>0) ? voltaLanche = programacao.quadro.tabelas[tabela].trechos[trecho-1].fim.descricao.slice(0,1):voltaLanche = programacao.quadro.tabelas[tabela].trechos[trecho].fim.descricao.slice(0,1);
+                (voltaLanche=='L') ? voltaLanche='VL' : voltaLanche='';
+                console.log(voltaLanche)
+
                 adicionarItemUnico(programacao.quadro.tabelas[tabela].trechos[trecho].inicio.postoControle,todosPostos)
                 adicionarItemUnico(programacao.quadro.tabelas[tabela].trechos[trecho].fim.postoControle,todosPostos)
                 //adicionarItemUnico(programacao.quadro.tabelas[tabela].numero,tabelas)
@@ -107,7 +113,7 @@ export function Form({setTableData,setListaPostos,setListaTabelas,setInformacoes
                  terminalSaida: programacao.quadro.tabelas[tabela].trechos[trecho].inicio.postoControle,
                  terminalChegada: programacao.quadro.tabelas[tabela].trechos[trecho].fim.postoControle,
                  tabela:programacao.quadro.tabelas[tabela].numero,
-                 descricaoSaida: programacao.quadro.tabelas[tabela].trechos[trecho].inicio.descricao.slice(0,1),
+                 descricaoSaida: voltaLanche || programacao.quadro.tabelas[tabela].trechos[trecho].inicio.descricao.slice(0,1),
                  descricaoChegada: programacao.quadro.tabelas[tabela].trechos[trecho].fim.descricao.slice(0,1),
                  saida: programacao.quadro.tabelas[tabela].trechos[trecho].inicio.horario.slice(programacao.quadro.tabelas[tabela].trechos[trecho].inicio.horario.indexOf('T')+1,programacao.quadro.tabelas[tabela].trechos[trecho].inicio.horario.length),
                  chegada: programacao.quadro.tabelas[tabela].trechos[trecho].fim.horario.slice(programacao.quadro.tabelas[tabela].trechos[trecho].fim.horario.indexOf('T')+1,programacao.quadro.tabelas[tabela].trechos[trecho].fim.horario.length),

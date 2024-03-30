@@ -35,7 +35,7 @@ export function Tables({ tableData, terminalSelecionado, tabelaSelecionada,infor
 
                                         (tabelaSelecionada == "Todas" || tabelaSelecionada == item.tabela) &&
                                         <tr key={index}>
-                                            <td>{item.tabela}</td>
+                                            <td>{item.tabela + item.descricaoSaida}</td>
                                             <td>{item.saida}</td>
                                             <td>{item.chegada}</td>
                                             <td>{item.descricaoChegada}</td>
