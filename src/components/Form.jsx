@@ -1,34 +1,51 @@
 import './Form.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 let tipo_linha ='';
 
-export function Form({setTableData,setListaPostos,setListaTabelas,setInformacoesLinhas}) {
+
+export function Form({setTableData,setListaPostos,setListaTabelas,setInformacoesLinhas,setNomeLinhas,nomeLinhas}) {
     const [date, setDate] = useState('');
-    const [nomeLinhas,setNomeLinhas] = useState([])
+    const hasRun = useRef(false);
+
 
     async function consultarLinhas() {
-        
+
             try {
-                let url = 'http://gistapis.etufor.ce.gov.br:8081/api/linhas/';
-                let response = await fetch(url);
-                let lista_linhas = await response.json();
-                setNomeLinhas(lista_linhas)
+                if(nomeLinhas.length==0){
+                    let url = 'http://gistapis.etufor.ce.gov.br:8081/api/linhas/';
+                    let response = await fetch(url);
+                    let lista_linhas = await response.json();
+                    setNomeLinhas(lista_linhas)
+                }
+                
                 
             } catch (error) {
                 console.error('Ocorreu um erro:', error.message);
-                alert('Não foi possível consultar o servidor!')
+                alert('Ocorreu um erro:', error.message);
             }
 
 
     }
 
+    
+    
+
     useEffect(() => {
+        if(hasRun.current){
+            return
+        }
+        
         let objetoDate = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
         objetoDate = objetoDate.split(',')[0];
         objetoDate = objetoDate.split('/');
         setDate(`${objetoDate[2]}-${objetoDate[1]}-${objetoDate[0]}`);
-        consultarLinhas()
+
+        consultarLinhas() 
+
+        hasRun.current = true
+         
+        
     }, []);
 
 
@@ -44,13 +61,13 @@ export function Form({setTableData,setListaPostos,setListaTabelas,setInformacoes
             let programacao = await request.json();
     
             if (programacao.Message) {
-                alert('Programação não encontrada');
+                alert(`Ocorreu um erro:  ${error.message}`);
             }
             
             organizarProgramacao(programacao);
         } catch (error) {
             console.error('Ocorreu um erro:', error.message);
-            alert('Não foi possível consultar o servidor!')
+            alert(`Ocorreu um erro:  ${error.message}`);
         }
       }
 
@@ -93,7 +110,7 @@ export function Form({setTableData,setListaPostos,setListaTabelas,setInformacoes
 
                 (trecho>0) ? voltaLanche = programacao.quadro.tabelas[tabela].trechos[trecho-1].fim.descricao.slice(0,1):voltaLanche = programacao.quadro.tabelas[tabela].trechos[trecho].fim.descricao.slice(0,1);
                 (voltaLanche=='L') ? voltaLanche='VL' : voltaLanche='';
-                console.log(voltaLanche)
+                //console.log(voltaLanche)
 
                 adicionarItemUnico(programacao.quadro.tabelas[tabela].trechos[trecho].inicio.postoControle,todosPostos)
                 adicionarItemUnico(programacao.quadro.tabelas[tabela].trechos[trecho].fim.postoControle,todosPostos)
@@ -136,8 +153,8 @@ export function Form({setTableData,setListaPostos,setListaTabelas,setInformacoes
         organizarHorarios(postos)
         setInformacoesLinhas(informacoes)
 
-        console.log(programacao)
-        console.log(informacoes)
+        //console.log(programacao)
+        //console.log(informacoes)
         
     }
 

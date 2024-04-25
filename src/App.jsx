@@ -18,6 +18,7 @@ function App() {
   const [tabelaSelecionada,setTabelaSelecionada] = useState('Todas')
   const [tipoFiltroMenu,setTipoFiltroMenu] = useState('hide')
   const [informacoesLinhas,setInformacoesLinhas] = useState('')
+  const [nomeLinhas,setNomeLinhas] = useState([])
 
   function handleReset(){
     setTableData('');
@@ -31,14 +32,8 @@ function App() {
   return (
     <div className='container'>
       {(!tableData)? 
-        <Form setTableData={setTableData} setListaPostos={setListaPostos} listaTabelas={listaTabelas} setListaTabelas={setListaTabelas} setInformacoesLinhas={setInformacoesLinhas}/>
+        <Form setTableData={setTableData} setListaPostos={setListaPostos} listaTabelas={listaTabelas} setListaTabelas={setListaTabelas} setInformacoesLinhas={setInformacoesLinhas} nomeLinhas={nomeLinhas} setNomeLinhas={setNomeLinhas}/>
       :
-      ''
-      }
-
-      
-      
-      {(tableData)?
       <>
       <MenuTrigger setTipoFiltroMenu={setTipoFiltroMenu}/>
       <Reset handleReset={handleReset}/>
@@ -48,8 +43,6 @@ function App() {
       
       
       </>
-      :
-      ''
       }
 
       <Tables tableData={tableData} terminalSelecionado={terminalSelecionado} tabelaSelecionada={tabelaSelecionada} informacoesLinhas={informacoesLinhas}  />
