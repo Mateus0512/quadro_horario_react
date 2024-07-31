@@ -1,6 +1,6 @@
-import { temas } from "../utils/temas"
+import { temas } from "../utils/temas";
 
-export function Details({informacoesLinha, tema}){
+export function Details({informacoesLinha, tema,aproveitamentos}){
     return(
         
         <details className={`w-[99%] flex overflow-hidden rounded-xl p-2 pb-2 mt-2 justify-center transition-all duration-500 ease-in-out max-h-18 ${temas.details[tema]}`} >
@@ -14,6 +14,27 @@ export function Details({informacoesLinha, tema}){
                 )}</p>
                 <p><strong>Extensão da linha: </strong>{informacoesLinha.extensaoLinha}km</p>
                 <p className=""><strong>kmProgramada: </strong>{informacoesLinha.kmProgramada}km</p>
+                {aproveitamentos.length>0 && 
+                <>
+                    <details className={`w-[99%] flex overflow-hidden rounded-xl p-2 pb-2 mt-2 justify-center transition-all duration-500 ease-in-out max-h-18 ${temas.details[tema]}`}>
+                        <summary>Aproveitamentos:</summary>
+                    {aproveitamentos.map(tabela=>{
+                        return(
+                        <dl key={tabela.tabela*50} className="rounded-lg shadow-shape mt-1 p-2">
+                            <dt className="text-lg font-medium "><strong>Tabela {tabela.tabela}</strong></dt>
+                            {tabela.aproveitamento.map(itemAproveitamento=>{
+                                return(
+                                    <dd className="mt-1 ml-2" key={itemAproveitamento.entrada}>Linha: {itemAproveitamento.linha} Entrada: {itemAproveitamento.entrada}</dd>
+                                )
+                            })}
+                            
+                        </dl>
+                        )
+                    })}
+                    </details>
+                </>
+                }
+                
                 
                 <div className="flex mt-2 overflow-auto">
                     <table className="border-collapse table-auto text-sm border border-slate-700 w-full">

@@ -2,7 +2,6 @@ import { ConsultarLinha } from "./components/consultar_linha";
 import { NavBar } from "./components/navbar";
 import { useEffect,useState,useRef } from "react";
 import { Menu } from "./components/menu";
-import { organizarInformacoes } from "./utils/funcoes";
 import { QuadroDeHorario } from "./components/quadro_de_horario";
 import { temas } from "./utils/temas";
 
@@ -46,8 +45,8 @@ export function App() {
     async function pesquisarLinha(){
       try {
         const dataSelecionada = dia.split('-');
-        const request = await fetch(`https://api-lyart-chi.vercel.app/Programacao/${linhaSelecionada.split('-')[0]}?data=${dataSelecionada[0]}${dataSelecionada[1]}${dataSelecionada[2]}`);
-        
+        //const request = await fetch(`https://api-lyart-chi.vercel.app/Programacao/${linhaSelecionada.split('-')[0]}?data=${dataSelecionada[0]}${dataSelecionada[1]}${dataSelecionada[2]}`);
+        const request = await fetch(`http://localhost:3333/Programacao/${linhaSelecionada.split('-')[0]}?data=${dataSelecionada[0]}${dataSelecionada[1]}${dataSelecionada[2]}`);
         if (!request.ok) {
           throw new Error('Não foi possível obter a programação. Código de status: ' + request.status);
         }
@@ -60,7 +59,7 @@ export function App() {
           return
         }
 
-        setInformacoesLinha(organizarInformacoes(programacao));
+        setInformacoesLinha(programacao);
       } catch (error) {
           console.error('Ocorreu um erro:', error.message);
           alert(`Ocorreu um erro:  ${error.message}`);
@@ -141,7 +140,7 @@ export function App() {
 
           
         
-          <Menu menuAberto={menuAberto} fecharMenu={fecharMenu} novaLinha={novaLinha} disabled={Object.entries(informacoesLinha).length===0} tema={tema} trocarTema={trocarTema} trocarModoTabela={trocarModoTabela} wrap={wrap} selecionarPosto={selecionarPosto} selecionarTabela={selecionarTabela} informacoesLinha={informacoesLinha[0]} />
+          <Menu menuAberto={menuAberto} fecharMenu={fecharMenu} novaLinha={novaLinha} disabled={Object.entries(informacoesLinha).length===0} tema={tema} trocarTema={trocarTema} trocarModoTabela={trocarModoTabela} wrap={wrap} selecionarPosto={selecionarPosto} selecionarTabela={selecionarTabela} informacoesLinha={informacoesLinha.informacoesLinha} />
 
           
         

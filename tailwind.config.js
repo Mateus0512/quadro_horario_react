@@ -10,8 +10,8 @@ export default {
         shape:"0px 8px 8px rgba(0, 0, 0, 0.1), 0px 4px 4px rgba(0, 0, 0, 0.1), 0px 2px 2px rgba(0, 0, 0, 0.1), 0px 0px 0px 1px rgba(0, 0, 0, 0.1), inset 0px 0px 0px 1px rgba(255, 255, 255, 0.03), inset 0px 1px 0px rgba(255, 255, 255, 0.03)",
       },
       backgroundImage: {
-        dark: "url(src/assets/docs-dark.png)",
-        light: "url(src/assets/beams-basic.png)"
+        dark: "url(https://github.com/Mateus0512/quadro_horario_react/blob/main/src/assets/docs-dark.png)",
+        light: "url(https://github.com/Mateus0512/quadro_horario_react/blob/main/src/assets/beams-basic.png)"
       }
     },
   },
