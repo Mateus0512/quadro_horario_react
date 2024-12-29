@@ -3,7 +3,7 @@ import { temas } from "../utils/temas";
 export function Details({informacoesLinha, tema,aproveitamentos}){
     return(
         
-        <details className={`w-[99%] flex overflow-hidden rounded-xl p-2 pb-2 mt-2 justify-center transition-all duration-500 ease-in-out max-h-18 ${temas.details[tema]}`} >
+        <details className={`w-[99%] flex flex-col overflow-hidden rounded-xl p-2 pb-2 mt-2 justify-center transition-all duration-500 ease-in-out max-h-18 ${temas.details[tema]}`} >
                 
                 <summary className="font-semibold">{informacoesLinha.linha}</summary>
                 
@@ -14,15 +14,22 @@ export function Details({informacoesLinha, tema,aproveitamentos}){
                 )}</p>
                 <p><strong>Extensão da linha: </strong>{informacoesLinha.extensaoLinha}km</p>
                 <p className=""><strong>kmProgramada: </strong>{informacoesLinha.kmProgramada}km</p>
+                {Object.entries(informacoesLinha.mediaTempoPorPosto).map(item=>{
+                    return(
+                        <p key={item[1]*10000}> <strong>Saída {item[0]}: </strong> {item[1]} minutos</p>
+                    )
+                })}
+                <p><strong>Tempo de Ciclo: </strong>{Object.values(informacoesLinha.mediaTempoPorPosto).reduce((valor,item)=>valor+item,0)} minutos</p>
                 {aproveitamentos.length>0 && 
                 <>
-                    <details className={`w-[99%] flex overflow-hidden rounded-xl p-2 pb-2 mt-2 justify-center transition-all duration-500 ease-in-out max-h-18 ${temas.details[tema]}`}>
+                    <details className={`w-[99%] flex flex-col overflow-hidden rounded-xl p-2 pb-2 mt-2 justify-center transition-all duration-500 ease-in-out max-h-18 ${temas.details[tema]}`}>
                         <summary>Aproveitamentos:</summary>
                     {aproveitamentos.map(tabela=>{
                         return(
                         <dl key={tabela.tabela*50} className="rounded-lg shadow-shape mt-1 p-2">
                             <dt className="text-lg font-medium "><strong>Tabela {tabela.tabela}</strong></dt>
                             {tabela.aproveitamento.map(itemAproveitamento=>{
+                                //console.log(itemAproveitamento)
                                 return(
                                     <dd className="mt-1 ml-2" key={itemAproveitamento.entrada}>Linha: {itemAproveitamento.linha} Entrada: {itemAproveitamento.entrada}</dd>
                                 )

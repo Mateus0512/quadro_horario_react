@@ -20,12 +20,12 @@ export function TableQuadroDeHorario({informacoesLinha, tema, wrap, postoSelecio
                                 {terminal[1].map(item=>{
                                     if(tabelaSelecionada === "todas" || tabelaSelecionada == item.tabela){
                                         return(
-                                            <tr key={item.chegada} className={`border-b ${temas.table.tr[tema]}`}>
-                                            <td className="p-2 text-center">{`${item.tabela} ${item.descricaoSaida}`}</td>
-                                            <td className="p-2 text-center">{item.saida}</td>
-                                            <td className="p-2 text-center">{item.chegada}</td>
-                                            <td className="p-2 text-center">{item.descricaoChegada}</td>
-                                    </tr>
+                                            <tr key={item.saida+"10000"} className={`border-b ${temas.table.tr[tema]}`}>
+                                                <td className="p-2 text-center">{`${item.tabela} ${item.descricaoSaida}`}</td>
+                                                <td className="p-2 text-center">{item.saida}</td>
+                                                <td className="p-2 text-center">{item.chegada}</td>
+                                                <td className="p-2 text-center">{item.descricaoChegada}</td>
+                                            </tr>
                                         )
                                     }
                                 })}
