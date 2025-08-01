@@ -45,8 +45,8 @@ export function App() {
     async function pesquisarLinha(){
       try {
         const dataSelecionada = dia.split('-');
-        //const request = await fetch(`https://api-lyart-chi.vercel.app/Programacao/${linhaSelecionada.split('-')[0]}?data=${dataSelecionada[0]}${dataSelecionada[1]}${dataSelecionada[2]}`);
-        const request = await fetch(`http://localhost:3333/Programacao/${linhaSelecionada.split('-')[0]}?data=${dataSelecionada[0]}${dataSelecionada[1]}${dataSelecionada[2]}`);
+        const request = await fetch(`https://api-lyart-chi.vercel.app/Programacao/${linhaSelecionada.split('-')[0]}?data=${dataSelecionada[0]}${dataSelecionada[1]}${dataSelecionada[2]}`);
+        //const request = await fetch(`http://localhost:3333/Programacao/${linhaSelecionada.split('-')[0]}?data=${dataSelecionada[0]}${dataSelecionada[1]}${dataSelecionada[2]}`);
         if (!request.ok) {
           throw new Error('Não foi possível obter a programação. Código de status: ' + request.status);
         }
