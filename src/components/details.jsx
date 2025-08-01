@@ -9,8 +9,8 @@ export function Details({informacoesLinha, tema,aproveitamentos}){
                 
                 <p><strong>Tipo:</strong> {informacoesLinha.tipo}</p>
                 <p><strong>Vigência: </strong>{informacoesLinha.vigencia}</p>
-                <p><strong>Ids dos postos: </strong>{informacoesLinha.codigoPostoControle.map((posto,index)=>
-                    informacoesLinha.codigoPostoControle.length-1 !== index ? (<span key={index}>{posto+','}</span>) : (<span key={index}>{posto}</span>)
+                <p><strong>Postos: </strong>{informacoesLinha.codigoPostoControle.map((posto,index)=>
+                    informacoesLinha.codigoPostoControle.length-1 !== index ? (<span key={index}>{posto+"-"+informacoesLinha.nomesPosto[index]+','}</span>) : (<span key={index}>{posto+"-"+informacoesLinha.nomesPosto[index]}</span>)
                 )}</p>
                 <p><strong>Extensão da linha: </strong>{informacoesLinha.extensaoLinha}km</p>
                 <p className=""><strong>kmProgramada: </strong>{informacoesLinha.kmProgramada}km</p>
@@ -31,7 +31,7 @@ export function Details({informacoesLinha, tema,aproveitamentos}){
                             {tabela.aproveitamento.map(itemAproveitamento=>{
                                 //console.log(itemAproveitamento)
                                 return(
-                                    <dd className="mt-1 ml-2" key={itemAproveitamento.entrada}>Linha: {itemAproveitamento.linha} Entrada: {itemAproveitamento.entrada}</dd>
+                                    <dd className="mt-1 ml-2" key={itemAproveitamento.entrada}>Linha: {itemAproveitamento.linha} Entrada: {itemAproveitamento.entrada} Posto: {itemAproveitamento.posto}</dd>
                                 )
                             })}
                             
