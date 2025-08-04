@@ -44,6 +44,10 @@ export function App() {
 
     async function pesquisarLinha(){
       try {
+        const tipoLinha  = linhaSelecionada!=="" ?
+        listaLinhas.find(linha => linha.numero==linhaSelecionada) :
+        "";
+
         const dataSelecionada = dia.split('-');
         const request = await fetch(`https://api-lyart-chi.vercel.app/Programacao/${linhaSelecionada.split('-')[0]}?data=${dataSelecionada[0]}${dataSelecionada[1]}${dataSelecionada[2]}`);
         //const request = await fetch(`http://localhost:3333/Programacao/${linhaSelecionada.split('-')[0]}?data=${dataSelecionada[0]}${dataSelecionada[1]}${dataSelecionada[2]}`);
@@ -52,14 +56,25 @@ export function App() {
         }
 
         const programacao = await request.json();
-        console.log(programacao)
+        
+        //console.log(programacao)
+
+        const informacoes = programacao.informacoesLinha
+        //console.log(informacoes)
+
+        const novasInformacoes = {...informacoes,tipoLinha: tipoLinha};
+
+        //console.log(novasInformacoes);
+
+        const novaProgramacao = {informacoesLinha: novasInformacoes, aproveitamentos: programacao.aproveitamentos, quadroDeHorario: programacao.quadroDeHorario};
+        //console.log(novaProgramacao);
 
         if (programacao.Message) {
           alert(`Ocorreu um erro:  ${programacao.Message}`); 
           return
         }
 
-        setInformacoesLinha(programacao);
+        setInformacoesLinha(novaProgramacao);
       } catch (error) {
           console.error('Ocorreu um erro:', error.message);
           alert(`Ocorreu um erro:  ${error.message}`);

@@ -6,12 +6,17 @@ export function Details({informacoesLinha, tema,aproveitamentos}){
         <details className={`w-[99%] flex flex-col overflow-hidden rounded-xl p-2 pb-2 mt-2 justify-center transition-all duration-500 ease-in-out max-h-18 ${temas.details[tema]}`} >
                 
                 <summary className="font-semibold">{informacoesLinha.linha}</summary>
-                
-                <p><strong>Tipo:</strong> {informacoesLinha.tipo}</p>
+                {informacoesLinha.tipoLinha && <p><strong>Tipo de linha:</strong> {informacoesLinha.tipoLinha.tipoLinha}</p>}
+                <p><strong>Tipo de programação:</strong> {informacoesLinha.tipo}</p>
                 <p><strong>Vigência: </strong>{informacoesLinha.vigencia}</p>
-                <p><strong>Postos: </strong>{informacoesLinha.codigoPostoControle.map((posto,index)=>
-                    informacoesLinha.codigoPostoControle.length-1 !== index ? (<span key={index}>{posto+"-"+informacoesLinha.nomesPosto[index]+','}</span>) : (<span key={index}>{posto+"-"+informacoesLinha.nomesPosto[index]}</span>)
-                )}</p>
+                <p><strong>Postos: </strong></p>
+                <ul className="list-disc ml-5">{informacoesLinha.codigoPostoControle.map((posto,index)=>
+                    <li key={index}><span>{posto+"-"+informacoesLinha.nomesPosto[index]}</span> </li>
+                    // (<li><span key={index}>{posto+"-"+informacoesLinha.nomesPosto[index]+','}</span></li>) : 
+                    // (<li><span key={index}>{posto+"-"+informacoesLinha.nomesPosto[index]}</span></li>)
+                    
+                    
+                )}</ul>
                 <p><strong>Extensão da linha: </strong>{informacoesLinha.extensaoLinha}km</p>
                 <p className=""><strong>kmProgramada: </strong>{informacoesLinha.kmProgramada}km</p>
                 {Object.entries(informacoesLinha.mediaTempoPorPosto).map(item=>{
@@ -28,13 +33,19 @@ export function Details({informacoesLinha, tema,aproveitamentos}){
                         return(
                         <dl key={tabela.tabela*50} className="rounded-lg shadow-shape mt-1 p-2">
                             <dt className="text-lg font-medium "><strong>Tabela {tabela.tabela}</strong></dt>
-                            {tabela.aproveitamento.map(itemAproveitamento=>{
+                            <ol className="">
+                            {tabela.aproveitamento.map((itemAproveitamento,index)=>{
                                 //console.log(itemAproveitamento)
                                 return(
-                                    <dd className="mt-1 ml-2" key={itemAproveitamento.entrada}>Linha: {itemAproveitamento.linha} Entrada: {itemAproveitamento.entrada} Posto: {itemAproveitamento.posto}</dd>
+                                    <dd className="mt-1 ml-2" key={itemAproveitamento.entrada}>
+                                        <li className="text-lg font-medium">{index+1}° viagem</li>
+                                        <li>Linha: {itemAproveitamento.linha}</li>
+                                        <li>Entrada: {itemAproveitamento.entrada} </li>
+                                        <li>Posto: {itemAproveitamento.posto}</li>
+                                    </dd>
                                 )
                             })}
-                            
+                            </ol>
                         </dl>
                         )
                     })}
